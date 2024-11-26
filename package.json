@@ -23,9 +23,9 @@
   },
   "license": "MIT",
   "peerDependencies": {
+    "prop-types": ">=15.5.10",
     "react": ">=16.2.0",
-    "react-dom": ">=16.2.0",
-    "prop-types": ">=15.5.10"
+    "react-dom": ">=16.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -41,6 +41,7 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-polyfill": "^6.26.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^1.0.0",
     "docusaurus-init": "^1.0.2",
     "enzyme": "^3.7.0",
@@ -68,7 +69,7 @@
     }
   },
   "scripts": {
-    "build": "rm dist/* && tsc && NODE_ENV=production webpack --config webpack.build.config.js && cp src/styles.css dist/styles.css && cp src/*.ts* dist",
+    "build": "tsc && cross-env NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.build.config.js && node copy-files.js",
     "dev": "tsc -w -p tsconfig.dev.json & webpack-dev-server --config webpack.config.js --mode development --open",
     "styleguide": "tsc -w & styleguidist server",
     "build-styleguide": "tsc && styleguidist build",
